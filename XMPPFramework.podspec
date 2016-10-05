@@ -44,8 +44,7 @@ s.source = { :git => 'https://github.com/robbiehanson/XMPPFramework.git', :branc
     core.vendored_libraries = 'Vendor/libidn/libidn.a'
     core.libraries = 'xml2', 'resolv'
     core.xcconfig = {
-      'HEADER_SEARCH_PATHS' => '$(inherited) $(SDKROOT)/usr/include/libxml2 $(SDKROOT)/usr/include/libresolv',
-      'ENABLE_BITCODE' => 'NO'
+      'HEADER_SEARCH_PATHS' => '$(inherited) $(SDKROOT)/usr/include/libxml2 $(SDKROOT)/usr/include/libresolv'
     }
     core.dependency 'CocoaLumberjack', '~> 2.0'
     core.dependency 'CocoaAsyncSocket', '~> 7.5.0'
