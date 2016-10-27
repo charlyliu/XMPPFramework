@@ -211,6 +211,12 @@ s.source = { :git => 'https://github.com/robbiehanson/XMPPFramework.git', :branc
   ss.prefix_header_contents = "#define HAVE_XMPP_SUBSPEC_#{name.upcase.sub('-', '_')}"
   end
 
+  s.subspec 'XEP-0138' do |ss|
+  ss.source_files = 'Extensions/XEP-0138/**/*.{h,m}'
+  ss.dependency 'XMPPFramework/Core'
+  ss.prefix_header_contents = "#define HAVE_XMPP_SUBSPEC_#{name.upcase.sub('-', '_')}"
+  end
+
   s.subspec 'XEP-0147' do |ss|
     ss.source_files = 'Extensions/XEP-0147/**/*.{h,m}'
     ss.dependency 'XMPPFramework/Core'
@@ -377,6 +383,7 @@ s.source = { :git => 'https://github.com/robbiehanson/XMPPFramework.git', :branc
     ss.dependency 'XMPPFramework/XEP-0106'
     ss.dependency 'XMPPFramework/XEP-0115'
     ss.dependency 'XMPPFramework/XEP-0136'
+    ss.dependency 'XMPPFramework/XEP-0138'
     ss.dependency 'XMPPFramework/XEP-0147'
     ss.dependency 'XMPPFramework/XEP-0153'
     ss.dependency 'XMPPFramework/XEP-0172'
