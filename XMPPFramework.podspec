@@ -214,6 +214,7 @@ s.source = { :git => 'https://github.com/robbiehanson/XMPPFramework.git', :branc
   s.subspec 'XEP-0138' do |ss|
   ss.source_files = 'Extensions/XEP-0138/**/*.{h,m}'
   ss.dependency 'XMPPFramework/Core'
+  ss.library = 'z'
   ss.prefix_header_contents = "#define HAVE_XMPP_SUBSPEC_#{name.upcase.sub('-', '_')}"
   end
 
