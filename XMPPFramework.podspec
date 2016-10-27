@@ -40,7 +40,7 @@ s.source = { :git => 'https://github.com/robbiehanson/XMPPFramework.git', :branc
   END
 
   s.subspec 'Core' do |core|
-    core.source_files = ['XMPPFramework.h', 'Core/**/*.{h,m}', 'Vendor/libidn/*.h', 'Authentication/**/*.{h,m}', 'Categories/**/*.{h,m}', 'Utilities/**/*.{h,m}']
+    core.source_files = ['XMPPFramework.h', 'Core/**/*.{h,m}', 'Vendor/libidn/*.h', 'Authentication/**/*.{h,m}', 'Categories/**/*.{h,m}', 'Utilities/**/*.{h,m}', 'Features/**/*.{h,m}']
     core.vendored_libraries = 'Vendor/libidn/libidn.a'
     core.libraries = 'xml2', 'resolv'
     core.xcconfig = {
