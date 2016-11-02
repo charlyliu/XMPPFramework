@@ -10,10 +10,10 @@ Pod::Spec.new do |s|
 
   s.license = { :type => 'BSD', :file => 'copying.txt' }
   s.summary = 'An XMPP Framework in Objective-C for the Mac / iOS development community.'
-  s.homepage = 'https://github.com/robbiehanson/XMPPFramework'
+  s.homepage = 'https://github.schibsted.io/spt-marketplace/XMPPFramework'
   s.author = { 'Robbie Hanson' => 'robbiehanson@deusty.com' }
-#  s.source = { :git => 'https://github.com/robbiehanson/XMPPFramework.git', :tag => s.version }
-s.source = { :git => 'https://github.com/robbiehanson/XMPPFramework.git', :branch => 'master' }
+  s.source = { :git => 'git@github.schibsted.io:spt-marketplace/XMPPFramework.git', :tag => s.version }
+#  s.source = { :git => 'git@github.schibsted.io:spt-marketplace/XMPPFramework.git', :branch => 'master' }
   s.resources = [ '**/*.{xcdatamodel,xcdatamodeld}']
 
   s.description = 'XMPPFramework provides a core implementation of RFC-3920 (the xmpp standard), along with
