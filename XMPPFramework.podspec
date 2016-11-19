@@ -46,7 +46,6 @@ Pod::Spec.new do |s|
     core.xcconfig = {
       'HEADER_SEARCH_PATHS' => '$(inherited) $(SDKROOT)/usr/include/libxml2 $(SDKROOT)/usr/include/libresolv'
     }
-    core.dependency 'CocoaLumberjack', '~> 3.0.0'
     core.dependency 'CocoaAsyncSocket', '~> 7.5.0'
     core.dependency 'KissXML', '~> 5.1.2'
   end

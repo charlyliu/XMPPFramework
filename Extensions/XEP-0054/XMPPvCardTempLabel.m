@@ -44,7 +44,7 @@
 	{
 		XMPPLogError(@"Adding instance variables to XMPPvCardTempLabel is not currently supported!");
 		
-		[DDLog flushLog];
+		[XMPPLog flushLog];
 		exit(15);
 	}
 }
