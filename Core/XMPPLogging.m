@@ -1,4 +1,4 @@
-#import <Foundation/Foundation.h>
+#import "XMPPLogging.h"
 #import <objc/message.h>
 
 NSString *XMPPExtractFileNameWithoutExtension(const char *filePath, BOOL copy)
@@ -96,6 +96,27 @@ NSString *XMPPExtractFileNameWithoutExtension(const char *filePath, BOOL copy)
     });
 
     ((void (*)(id, SEL))objc_msgSend)(DDLogClass, selector);
+}
+
++ (void)log:(BOOL)asynchronous
+      level:(NSUInteger)level
+       flag:(NSUInteger)flag
+    context:(NSInteger)context
+       file:(NSString *)file
+   function:(NSString *)function
+       line:(NSUInteger)line
+        tag:(id)tag
+    message:(NSString *)message
+{
+    [self log:asynchronous
+        level:level
+         flag:flag
+      context:context
+         file:file.UTF8String
+     function:function.UTF8String
+         line:line
+          tag:tag
+       format:@"%@", message];
 }
 
 + (void)log:(BOOL)asynchronous

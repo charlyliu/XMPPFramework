@@ -127,7 +127,19 @@ NSString *XMPPExtractFileNameWithoutExtension(const char *filePath, BOOL copy);
 #define THIS_METHOD       NSStringFromSelector(_cmd)
 
 @interface XMPPLog: NSObject
+
 + (void)flushLog;
+
++ (void)log:(BOOL)asynchronous
+      level:(NSUInteger)level
+       flag:(NSUInteger)flag
+    context:(NSInteger)context
+       file:(NSString *)file
+   function:(NSString *)function
+       line:(NSUInteger)line
+        tag:(id)tag
+    message:(NSString *)message;
+
 + (void)log:(BOOL)asynchronous
       level:(NSUInteger)level
        flag:(NSUInteger)flag
@@ -137,6 +149,7 @@ NSString *XMPPExtractFileNameWithoutExtension(const char *filePath, BOOL copy);
        line:(NSUInteger)line
         tag:(id)tag
      format:(NSString *)format, ...;
+
 @end
 
 #define LOG_MAYBE(async, lvl, flg, ctx, tag, fnct, frmt, ...) \
