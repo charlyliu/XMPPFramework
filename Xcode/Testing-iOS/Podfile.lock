@@ -18,7 +18,6 @@ PODS:
     - XMPPFramework/ProcessOne
     - XMPPFramework/Reconnect
     - XMPPFramework/Roster
-    - XMPPFramework/SystemInputActivityMonitor
     - XMPPFramework/XEP-0009
     - XMPPFramework/XEP-0012
     - XMPPFramework/XEP-0016
@@ -67,6 +66,7 @@ PODS:
     - XMPPFramework/Core
   - XMPPFramework/FileTransfer (3.7.0):
     - XMPPFramework/Core
+    - XMPPFramework/XEP-0065
   - XMPPFramework/GoogleSharedStatus (3.7.0):
     - XMPPFramework/Core
   - XMPPFramework/ProcessOne (3.7.0):
@@ -151,6 +151,7 @@ PODS:
   - XMPPFramework/XEP-0313 (3.7.0):
     - XMPPFramework/Core
     - XMPPFramework/XEP-0059
+    - XMPPFramework/XEP-0297
   - XMPPFramework/XEP-0333 (3.7.0):
     - XMPPFramework/Core
   - XMPPFramework/XEP-0334 (3.7.0):
@@ -166,6 +167,7 @@ PODS:
   - XMPPFramework/XMPPMUCLight (3.7.0):
     - XMPPFramework/Core
     - XMPPFramework/CoreDataStorage
+    - XMPPFramework/XEP-0045
     - XMPPFramework/XEP-0203
 
 DEPENDENCIES:

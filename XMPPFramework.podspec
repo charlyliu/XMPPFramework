@@ -2,7 +2,7 @@ Pod::Spec.new do |s|
   s.name = 'XMPPFramework'
   s.version = '3.7.0'
 
-  s.osx.deployment_target = '10.8'
+#  s.osx.deployment_target = '10.8'
   s.ios.deployment_target = '8.0'
 
 #  tvOS support is blocked by libidn
@@ -66,6 +66,7 @@ Pod::Spec.new do |s|
   s.subspec 'FileTransfer' do |ss|
     ss.source_files = 'Extensions/FileTransfer/*.{h,m}'
     ss.dependency 'XMPPFramework/Core'
+    ss.dependency 'XMPPFramework/XEP-0065'
     ss.prefix_header_contents = "#define HAVE_XMPP_SUBSPEC_#{name.upcase.sub('-', '_')}"
   end
 
@@ -332,6 +333,7 @@ Pod::Spec.new do |s|
     ss.source_files = 'Extensions/XEP-0313/*.{h,m}'
     ss.dependency 'XMPPFramework/Core'
     ss.dependency 'XMPPFramework/XEP-0059'
+    ss.dependency 'XMPPFramework/XEP-0297'
     ss.prefix_header_contents = "#define HAVE_XMPP_SUBSPEC_#{name.upcase.sub('-', '_')}"
   end
 
@@ -345,6 +347,7 @@ Pod::Spec.new do |s|
     ss.source_files = 'Extensions/XMPPMUCLight/**/*.{h,m}'
     ss.dependency 'XMPPFramework/Core'
     ss.dependency 'XMPPFramework/CoreDataStorage'
+    ss.dependency 'XMPPFramework/XEP-0045'
     ss.dependency 'XMPPFramework/XEP-0203'
     ss.prefix_header_contents = "#define HAVE_XMPP_SUBSPEC_#{name.upcase.sub('-', '_')}"
   end
