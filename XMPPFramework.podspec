@@ -2,7 +2,7 @@ Pod::Spec.new do |s|
   s.name = 'XMPPFramework'
   s.version = '3.7.0'
 
-  s.osx.deployment_target = '10.8'
+#  s.osx.deployment_target = '10.8'
   s.ios.deployment_target = '8.0'
 
 #  tvOS support is blocked by libidn
@@ -10,10 +10,10 @@ Pod::Spec.new do |s|
 
   s.license = { :type => 'BSD', :file => 'copying.txt' }
   s.summary = 'An XMPP Framework in Objective-C for the Mac / iOS development community.'
-  s.homepage = 'https://github.com/robbiehanson/XMPPFramework'
+  s.homepage = 'https://github.schibsted.io/spt-marketplace/XMPPFramework'
   s.author = { 'Robbie Hanson' => 'robbiehanson@deusty.com' }
-#  s.source = { :git => 'https://github.com/robbiehanson/XMPPFramework.git', :tag => s.version }
-s.source = { :git => 'https://github.com/robbiehanson/XMPPFramework.git', :branch => 'master' }
+  s.source = { :git => 'git@github.schibsted.io:spt-marketplace/XMPPFramework.git', :tag => s.version }
+#  s.source = { :git => 'git@github.schibsted.io:spt-marketplace/XMPPFramework.git', :branch => 'master' }
   s.resources = [ '**/*.{xcdatamodel,xcdatamodeld}']
 
   s.description = 'XMPPFramework provides a core implementation of RFC-3920 (the xmpp standard), along with
@@ -46,7 +46,6 @@ s.source = { :git => 'https://github.com/robbiehanson/XMPPFramework.git', :branc
     core.xcconfig = {
       'HEADER_SEARCH_PATHS' => '$(inherited) $(SDKROOT)/usr/include/libxml2 $(SDKROOT)/usr/include/libresolv'
     }
-    core.dependency 'CocoaLumberjack', '~> 2.0'
     core.dependency 'CocoaAsyncSocket', '~> 7.5.0'
     core.dependency 'KissXML', '~> 5.1.2'
   end
@@ -67,6 +66,7 @@ s.source = { :git => 'https://github.com/robbiehanson/XMPPFramework.git', :branc
   s.subspec 'FileTransfer' do |ss|
     ss.source_files = 'Extensions/FileTransfer/*.{h,m}'
     ss.dependency 'XMPPFramework/Core'
+    ss.dependency 'XMPPFramework/XEP-0065'
     ss.prefix_header_contents = "#define HAVE_XMPP_SUBSPEC_#{name.upcase.sub('-', '_')}"
   end
 
@@ -340,6 +340,7 @@ s.source = { :git => 'https://github.com/robbiehanson/XMPPFramework.git', :branc
     ss.source_files = 'Extensions/XEP-0313/*.{h,m}'
     ss.dependency 'XMPPFramework/Core'
     ss.dependency 'XMPPFramework/XEP-0059'
+    ss.dependency 'XMPPFramework/XEP-0297'
     ss.prefix_header_contents = "#define HAVE_XMPP_SUBSPEC_#{name.upcase.sub('-', '_')}"
   end
 
@@ -353,6 +354,7 @@ s.source = { :git => 'https://github.com/robbiehanson/XMPPFramework.git', :branc
     ss.source_files = 'Extensions/XMPPMUCLight/**/*.{h,m}'
     ss.dependency 'XMPPFramework/Core'
     ss.dependency 'XMPPFramework/CoreDataStorage'
+    ss.dependency 'XMPPFramework/XEP-0045'
     ss.dependency 'XMPPFramework/XEP-0203'
     ss.prefix_header_contents = "#define HAVE_XMPP_SUBSPEC_#{name.upcase.sub('-', '_')}"
   end

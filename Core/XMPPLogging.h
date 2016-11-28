@@ -1,6 +1,7 @@
 /**
- * In order to provide fast and flexible logging, this project uses Cocoa Lumberjack.
- * 
+ * In order to provide fast and flexible logging, this project optionally uses Cocoa Lumberjack if it's
+ * detected in the project at runtime. Otherwise it fall back to NSLog.
+ *
  * The GitHub project page has a wealth of documentation if you have any questions.
  * https://github.com/robbiehanson/CocoaLumberjack
  * 
@@ -58,8 +59,6 @@
  * Xcode projects created with Xcode 4 automatically define DEBUG via the project's preprocessor macros.
  * If you created your project with a previous version of Xcode, you may need to add the DEBUG macro manually.
 **/
-
-#import <CocoaLumberjack/CocoaLumberjack.h>
 
 // Global flag to enable/disable logging throughout the entire xmpp framework.
 
@@ -119,13 +118,59 @@
 #define XMPP_LOG_ASYNC_TRACE     (YES && XMPP_LOG_ASYNC_ENABLED)
 
 // Define logging primitives.
-// These are primarily wrappers around the macros defined in Lumberjack's DDLog.h header file.
+// These are primarily wrappers around the CocoaLumberjack's logging methods.
+
+NSString *XMPPExtractFileNameWithoutExtension(const char *filePath, BOOL copy);
+
+#define THIS_FILE         (XMPPExtractFileNameWithoutExtension(__FILE__, NO))
+
+#define THIS_METHOD       NSStringFromSelector(_cmd)
+
+@interface XMPPLog: NSObject
+
++ (void)flushLog;
+
++ (void)log:(BOOL)asynchronous
+      level:(NSUInteger)level
+       flag:(NSUInteger)flag
+    context:(NSInteger)context
+       file:(NSString *)file
+   function:(NSString *)function
+       line:(NSUInteger)line
+        tag:(id)tag
+    message:(NSString *)message;
+
++ (void)log:(BOOL)asynchronous
+      level:(NSUInteger)level
+       flag:(NSUInteger)flag
+    context:(NSInteger)context
+       file:(const char *)file
+   function:(const char *)function
+       line:(NSUInteger)line
+        tag:(id)tag
+     format:(NSString *)format, ...;
+
+@end
+
+#define LOG_MAYBE(async, lvl, flg, ctx, tag, fnct, frmt, ...) \
+do { if(lvl & flg) LOG_MACRO(async, lvl, flg, ctx, tag, fnct, frmt, ##__VA_ARGS__); } while(0)
+
+#define LOG_MACRO(isAsynchronous, lvl, flg, ctx, atag, fnct, frmt, ...) \
+    [XMPPLog log : isAsynchronous                                     \
+           level : lvl                                                \
+            flag : flg                                                \
+         context : ctx                                                \
+            file : __FILE__                                           \
+        function : fnct                                               \
+            line : __LINE__                                           \
+             tag : atag                                               \
+          format : (frmt), ## __VA_ARGS__]
 
 #define XMPP_LOG_OBJC_MAYBE(async, lvl, flg, ctx, frmt, ...) \
 do{ if(XMPP_LOGGING_ENABLED) LOG_MAYBE(async, lvl, flg, ctx, nil, sel_getName(_cmd), frmt, ##__VA_ARGS__); } while(0)
 
 #define XMPP_LOG_C_MAYBE(async, lvl, flg, ctx, frmt, ...) \
-    do{ if(XMPP_LOGGING_ENABLED) LOG_MAYBE(async, lvl, flg, ctx, nil, __FUNCTION__, frmt, ##__VA_ARGS__); } while(0)
+do{ if(XMPP_LOGGING_ENABLED) LOG_MAYBE(async, lvl, flg, ctx, nil, __FUNCTION__, frmt, ##__VA_ARGS__); } while(0)
 
 
 #define XMPPLogError(frmt, ...)    XMPP_LOG_OBJC_MAYBE(XMPP_LOG_ASYNC_ERROR,   xmppLogLevel, XMPP_LOG_FLAG_ERROR,  \
